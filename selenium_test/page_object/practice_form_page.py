@@ -3,34 +3,13 @@ from selenium.webdriver.common.keys import Keys
 
 class PracticeFormPage:
     PAGE_URL = "https://demoqa.com/automation-practice-form"
+    
     SELECTORS = {
         "first_name": (By.ID, "firstName"),
         "last_name": (By.ID, "lastName"),
         "gender_male": (By.CSS_SELECTOR, "label[for='gender-radio-1']"),
         "phone_number": (By.ID, "userNumber"),
-        "submit_button": (By.ID, "submit"),
-        "success_modal_title": (By.CLASS_NAME, "modal-title"),
-        "success_modal_phone_number": (By.XPATH, "/html/body/div[4]/div/div/div[2]/div/table/tbody/tr[4]/td[2]")
-    }
-
-    def __init__(self, driver):
-        self.driver = driver
-        self.driver.maximize_window()
-        self.driver.implicitly_wait(3)
-
-    def open_page(self):
-        self.driver.get(self.PAGE_URL)
-
-from selenium.webdriver.common.by import By
-from selenium.webdriver.common.keys import Keys
-
-class PracticeFormPage:
-    PAGE_URL = "https://demoqa.com/automation-practice-form"
-    SELECTORS = {
-        "first_name": (By.ID, "firstName"),
-        "last_name": (By.ID, "lastName"),
-        "gender": (By.CSS_SELECTOR, "label[for='gender-radio-1']"),
-        "phone_number": (By.ID, "userNumber"),
+        "subject": (By.ID, "subjectsInput"),
         "submit_button": (By.ID, "submit"),
         "success_modal_title": (By.CLASS_NAME, "modal-title"),
         "success_modal_phone_number": (By.XPATH, "/html/body/div[4]/div/div/div[2]/div/table/tbody/tr[4]/td[2]")
@@ -51,11 +30,16 @@ class PracticeFormPage:
         self.driver.find_element(*self.SELECTORS['last_name']).send_keys(last_name)
 
     def select_gender_male(self):
-        element = self.driver.find_element(*self.SELECTORS['gender_{gender}'])
+        element = self.driver.find_element(*self.SELECTORS['gender_male'])
         self.driver.execute_script("arguments[0].click();", element)
 
     def fill_phone_number(self, phone_number):
         self.driver.find_element(*self.SELECTORS['phone_number']).send_keys(phone_number)
+        
+    def fill_subject(self, subject):
+        element = self.driver.find_element(*self.SELECTORS['subject'])
+        element.send_keys(subject)
+        element.send_keys(Keys.ENTER)
 
     def submit_form(self):
         element = self.driver.find_element(*self.SELECTORS['submit_button'])
