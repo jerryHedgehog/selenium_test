@@ -1,9 +1,11 @@
-# Testy Automatyczne (Python + Selenium + Behave)
+# Testy Automatyczne (Python + Selenium + Allure + Behave)
 
-![Python]
-![Selenium]
-![Behave]
-![Pytest]
+![Python](https://img.shields.io/badge/Python-3.10-blue)
+![Selenium](https://img.shields.io/badge/Selenium-4.0-green)
+![Behave](https://img.shields.io/badge/Behave-BDD-orange)
+![Pytest](https://img.shields.io/badge/Test_Runner-Pytest-yellow)
+![Allure](https://img.shields.io/badge/Report-Allure-9cf)
+![Grid](https://img.shields.io/badge/Infrastructure-Selenium_Grid-cac)
 
 > *Pliki z zajęć kursu CodeBrainers z zakresu testów automatycznych*
 
