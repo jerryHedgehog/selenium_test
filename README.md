@@ -15,6 +15,7 @@ W projekcie wykorzystano następujący stos technologiczny:
 * **Język programowania:** Python 3.14
 * **Biblioteka webowa:** Selenium WebDriver (wersja 4.38)
 * **Test Runner:** Pytest
+* **Równoległość testów:** pytest-xdist
 * **BDD Framework:** Behave (styl Cucumbera)
 * **Wzorce projektowe:** Page Object Model (POM)
 * **Raportowanie:** Allure Framework
@@ -57,3 +58,23 @@ Weryfikacja pojawienia się modala z potwierdzeniem ("Thanks for submitting the 
 Testy parametryzowane (Scenario Outline) sprawdzające formularz dla różnych zestawów danych osobowych (różne imiona i nazwiska).
 3. Testy na różnych przeglądarkach
 Weryfikacja działania na Chrome oraz Edge przy użyciu RemoteWebDriver.
+
+## Jak uruchomić testy
+### Wymagania wstępne
+Aby w pełni korzystać z projektu (w tym z raportowania Allure), upewnij się, że masz zainstalowane:
+* **Python 3.10+**
+* **Java JDK 8+** (wymagane do generowania raportów Allure oraz działania Selenium Grid)
+
+1. Klonowanie i instalacja
+git clone [https://github.com/jerryHedgehog/selenium_test.git](https://github.com/jerryHedgehog/selenium_test.git)
+cd selenium_test
+pip install -r requirements.txt
+2. Uruchamianie
+python -m pytest -v tests/test_demoqa_form.py
+3. Raportowanie i wyświetlanie w przeglądarce
+pytest --alluredir=./allure-results
+allure serve ./allure-results
+
+## Dodatkowe informacje o konfiguracji
+W pliku `tests/test_demoqa_form.py` zmieniono domyślny driver z `remote_chrome_driver` na lokalny `driver`. 
+Dzięki temu zabiegowi testy można uruchomić bezpośrednio na lokalnej maszynie (Localhost), bez konieczności stawiania i konfigurowania serwera Selenium Grid (port 4444).
