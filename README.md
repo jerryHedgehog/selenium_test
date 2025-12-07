@@ -9,6 +9,18 @@
 
 > *Pliki z zajęć kursu CodeBrainers z zakresu testów automatycznych*
 
+## Technologie
+W projekcie wykorzystano następujący stos technologiczny:
+
+* **Język programowania:** Python 3.14
+* **Biblioteka webowa:** Selenium WebDriver (wersja 4.38)
+* **Test Runner:** Pytest
+* **BDD Framework:** Behave (styl Cucumbera)
+* **Wzorce projektowe:** Page Object Model (POM)
+* **Raportowanie:** Allure Framework
+* **Infrastruktura:** Selenium Grid (RemoteWebDriver)
+* **Przeglądarki:** Chrome, Edge
+
 ## Spis treści
 * [O projekcie](#o-projekcie)
 * [Struktura projektu](#struktura-projektu)
@@ -35,3 +47,13 @@ selenium_test/
 ├── page_object/            # Mapy elementów (Page Object Model)
 ├── tests/                  # Testy klasyczne (Pytest)
 └── test_data/              # Dane testowe
+
+## Scenariusze testowe
+
+1. Poprawne wypełnienie formularza (Happy Path)
+Wypełnienie wszystkich pól obowiązkowych (Imię, Nazwisko, Płeć, Telefon).
+Weryfikacja pojawienia się modala z potwierdzeniem ("Thanks for submitting the form").
+2. Walidacja danych (Data Driven Testing)
+Testy parametryzowane (Scenario Outline) sprawdzające formularz dla różnych zestawów danych osobowych (różne imiona i nazwiska).
+3. Testy na różnych przeglądarkach
+Weryfikacja działania na Chrome oraz Edge przy użyciu RemoteWebDriver.
