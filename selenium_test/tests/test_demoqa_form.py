@@ -6,16 +6,19 @@ from test_data.test_data_demoqa_form import TestDataDemoQAForm
 
 @allure.feature("DemoQA Form")
 class TestDemoQaForm:
+    # To jest ok, o ile zmieniłeś plik test_data na zmienne statyczne (bez __init__)
     Test_Data = TestDataDemoQAForm()
 
+    # ---------------- TEST 1 ----------------
     @allure.story("Fill form with valid data")
     @allure.severity(allure.severity_level.BLOCKER)
     @allure.title("Submit form with valid data")
-    def test_submit_form_with_valid_data(self, remote_chrome_driver, practice_form_page):
+    def test_submit_form_with_valid_data(self, driver, practice_form_page):
         # Act
         with allure.step("open page"):
             practice_form_page.open_page()
         with allure.step("fill first name"):
+            # Używamy TestDataDemoQAForm (bez self, bo to klasa statyczna)
             practice_form_page.fill_first_name(TestDataDemoQAForm.first_name)
         with allure.step("fill last name"):
             practice_form_page.fill_last_name(TestDataDemoQAForm.last_name)
@@ -35,12 +38,15 @@ class TestDemoQaForm:
             assert practice_form_page.expected_success_modal_title() == "Thanks for submitting the form"
 
         with allure.step("attach screenshot"):
-            allure.attach(remote_chrome_driver.get_screenshot_as_png(), name="screenshot", attachment_type=AttachmentType.PNG)
+            # POPRAWKA: Używamy 'driver', a nie 'remote_chrome_driver'
+            allure.attach(driver.get_screenshot_as_png(), name="screenshot", attachment_type=AttachmentType.PNG)
 
 
-    @allure.story("Fill form with invalid data") # Assuming this is what was intended, though the data looks valid in the original
+    # ---------------- TEST 2 ----------------
+    @allure.story("Fill form with invalid data")
     @allure.severity(allure.severity_level.NORMAL)
-    def test_submit_form_with_invalid_data(self, remote_chrome_driver, practice_form_page):
+    # POPRAWKA: Zmieniamy argument z 'remote_chrome_driver' na 'driver'
+    def test_submit_form_with_invalid_data(self, driver, practice_form_page):
         # Act
         with allure.step("open page"):
             practice_form_page.open_page()
@@ -62,4 +68,5 @@ class TestDemoQaForm:
             assert practice_form_page.expected_success_modal_title() == "Thanks for submitting the form"
 
         with allure.step("attach screenshot"):
-            allure.attach(remote_chrome_driver.get_screenshot_as_png(), name="screenshot", attachment_type=AttachmentType.PNG)
+            # POPRAWKA: Tutaj też 'driver'
+            allure.attach(driver.get_screenshot_as_png(), name="screenshot", attachment_type=AttachmentType.PNG)
